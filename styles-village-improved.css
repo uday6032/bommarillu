@@ -1,0 +1,966 @@
+/* Village Theme - Yellow & Green with Crops - IMPROVED */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+    --rice-yellow: #f4e04d;
+    --harvest-gold: #daa520;
+    --crop-green: #7cb342;
+    --forest-green: #558b2f;
+    --earth-brown: #8b4513;
+    --mud-brown: #a0826d;
+    --sky-blue: #87ceeb;
+    --grass-green: #90ee90;
+    --leaf-green: #32cd32;
+    --bamboo: #d4a574;
+    --soil: #654321;
+}
+
+body {
+    font-family: 'Noto Sans Telugu', 'Poppins', sans-serif;
+    background: linear-gradient(to bottom, var(--sky-blue) 0%, #b0d4f1 40%, #e8f4f8 60%, var(--grass-green) 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Animated Sky */
+.sky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 400px;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.sun {
+    position: absolute;
+    top: 50px;
+    right: 100px;
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle, #ffd700, #ffa500);
+    border-radius: 50%;
+    box-shadow: 0 0 40px #ffa500, 0 0 80px #ff8c00;
+    animation: sunGlow 3s ease-in-out infinite;
+}
+
+@keyframes sunGlow {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.1); opacity: 0.9; }
+}
+
+/* Clouds */
+.clouds { position: absolute; width: 100%; height: 100%; }
+.cloud {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 100px;
+    animation: floatCloud 60s linear infinite;
+}
+.cloud::before, .cloud::after {
+    content: '';
+    position: absolute;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 100px;
+}
+.cloud1 { width: 100px; height: 40px; top: 80px; left: -100px; animation-duration: 50s; }
+.cloud1::before { width: 50px; height: 40px; top: -20px; left: 10px; }
+.cloud1::after { width: 60px; height: 30px; top: -10px; right: 10px; }
+.cloud2 { width: 120px; height: 50px; top: 150px; left: -120px; animation-duration: 70s; animation-delay: 10s; }
+.cloud2::before { width: 60px; height: 50px; top: -25px; left: 15px; }
+.cloud2::after { width: 70px; height: 35px; top: -15px; right: 15px; }
+.cloud3 { width: 90px; height: 35px; top: 200px; left: -90px; animation-duration: 60s; animation-delay: 20s; }
+.cloud3::before { width: 45px; height: 35px; top: -18px; left: 12px; }
+.cloud3::after { width: 50px; height: 28px; top: -12px; right: 12px; }
+
+@keyframes floatCloud {
+    0% { left: -150px; }
+    100% { left: calc(100% + 150px); }
+}
+
+/* Flying Birds */
+.birds { position: absolute; width: 100%; height: 100%; }
+.bird {
+    position: absolute;
+    font-size: 2rem;
+    animation: flyBird 40s linear infinite;
+}
+.bird1 { top: 120px; left: -50px; animation-duration: 35s; }
+.bird2 { top: 180px; left: -50px; animation-duration: 45s; animation-delay: 15s; }
+.bird3 { top: 100px; left: -50px; animation-duration: 55s; animation-delay: 25s; }
+
+@keyframes flyBird {
+    0% { left: -50px; transform: scale(0.8); }
+    50% { transform: scale(1); }
+    100% { left: calc(100% + 50px); transform: scale(0.8); }
+}
+
+/* Removed butterflies and fireflies for cleaner aesthetic */
+
+/* Village Header */
+.village-header {
+    position: relative;
+    z-index: 10;
+    padding: 2rem 0;
+    text-align: center;
+    margin-top: 100px;
+}
+
+.village-sign {
+    display: inline-block;
+    perspective: 1000px;
+    animation: swingSign 4s ease-in-out infinite;
+}
+
+@keyframes swingSign {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-2deg); }
+    75% { transform: rotate(2deg); }
+}
+
+.sign-board {
+    background: linear-gradient(135deg, var(--earth-brown) 0%, var(--mud-brown) 100%);
+    border: 8px solid var(--soil);
+    border-radius: 20px;
+    padding: 2rem 4rem;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.4), inset 0 0 20px rgba(0,0,0,0.2);
+    position: relative;
+}
+
+.sign-board::before,
+.sign-board::after {
+    content: '';
+    display: none;
+}
+
+.village-title {
+    font-size: 4rem;
+    font-weight: 700;
+    font-family: 'Noto Sans Telugu', serif;
+    color: var(--rice-yellow);
+    text-shadow: 3px 3px 6px rgba(0,0,0,0.6);
+    margin-bottom: 0.5rem;
+}
+
+.village-subtitle {
+    font-size: 1.6rem;
+    color: var(--harvest-gold);
+    font-weight: 600;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.village-subtitle-en {
+    font-size: 1.2rem;
+    color: #f0e68c;
+    font-style: italic;
+    margin-top: 0.3rem;
+}
+
+/* Village Container */
+.village-container {
+    position: relative;
+    z-index: 5;
+    max-width: 1400px;
+    margin: 3rem auto;
+    padding: 0 2rem;
+}
+
+/* Navigation Huts */
+.navigation-huts {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-bottom: 4rem;
+    flex-wrap: wrap;
+}
+
+.nav-hut {
+    cursor: pointer;
+    transition: all 0.4s ease;
+    position: relative;
+}
+
+.nav-hut:hover { transform: translateY(-10px); }
+
+.hut-roof {
+    width: 140px;
+    height: 0;
+    border-left: 70px solid transparent;
+    border-right: 70px solid transparent;
+    border-bottom: 60px solid var(--earth-brown);
+    position: relative;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+}
+
+.hut-roof::before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    left: -75px;
+    width: 150px;
+    height: 0;
+    border-left: 75px solid transparent;
+    border-right: 75px solid transparent;
+    border-bottom: 30px solid var(--soil);
+}
+
+.hut-body {
+    width: 120px;
+    height: 100px;
+    background: linear-gradient(135deg, var(--bamboo) 0%, var(--mud-brown) 100%);
+    border: 4px solid var(--earth-brown);
+    border-radius: 0 0 15px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    margin: 0 10px;
+}
+
+.hut-icon {
+    font-size: 2.5rem;
+    animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+.hut-label {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--soil);
+    font-family: 'Noto Sans Telugu', sans-serif;
+}
+
+.nav-hut.active .hut-body {
+    background: linear-gradient(135deg, var(--harvest-gold) 0%, var(--rice-yellow) 100%);
+    border-color: var(--crop-green);
+    box-shadow: 0 8px 30px rgba(218, 165, 32, 0.6);
+}
+
+.nav-hut.active .hut-icon { animation: pulse 1s ease-in-out infinite; }
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+/* Village Views */
+.village-view {
+    display: none;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 30px;
+    padding: 3rem;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    border: 6px solid var(--earth-brown);
+    position: relative;
+    min-height: 500px;
+}
+
+.village-view.active { display: block; animation: fadeInScale 0.6s ease-out; }
+
+@keyframes fadeInScale {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* Tree View - SVG Tree */
+.tree-info {
+    text-align: center;
+    font-size: 1.3rem;
+    color: var(--forest-green);
+    font-weight: 600;
+    margin-bottom: 2rem;
+    font-family: 'Noto Sans Telugu', sans-serif;
+}
+
+.tree-legend-inline {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+}
+
+.legend-badge {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border: 2px solid;
+}
+
+.legend-badge.biological {
+    background: rgba(76, 175, 80, 0.1);
+    border-color: var(--crop-green);
+    color: var(--forest-green);
+}
+
+.legend-badge.spouse {
+    background: rgba(255, 64, 129, 0.1);
+    border-color: #ff4081;
+    color: #c51162;
+}
+
+.tree-canvas {
+    width: 100%;
+    height: 700px;
+    background: radial-gradient(circle at 50% 80%, rgba(144, 238, 144, 0.2), transparent);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+#familyTreeSVG { cursor: pointer; }
+
+.tree-node {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.tree-node:hover circle { stroke-width: 4; filter: drop-shadow(0 0 8px var(--harvest-gold)); }
+.tree-node:hover text { font-weight: 700; font-size: 15px; }
+
+/* Aesthetic curved tree branches */
+.tree-branch {
+    stroke: var(--earth-brown);
+    stroke-width: 2.5;
+    fill: none;
+    opacity: 0.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.tree-branch.to-spouse {
+    stroke: #ff4081;
+    stroke-width: 2;
+    stroke-dasharray: 5,3;
+    opacity: 0.6;
+}
+
+.tree-branch.to-child {
+    stroke: var(--earth-brown);
+    stroke-width: 2.5;
+    opacity: 0.7;
+}
+
+/* ANIMATED HOUSE AND FARM SCENE - Beautiful! */
+.crop-strip-container {
+    position: relative;
+    width: 100%;
+    height: 120px;
+    margin-top: 2rem;
+    overflow: hidden;
+    border-radius: 15px;
+    background: linear-gradient(to bottom, #8b6f47 0%, #6b4423 100%);
+    box-shadow: inset 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* Animated Farm House */
+.farm-house {
+    position: absolute;
+    left: 50%;
+    bottom: 20px;
+    transform: translateX(-50%);
+    animation: houseGlow 3s ease-in-out infinite;
+}
+
+.farm-house-roof {
+    width: 80px;
+    height: 0;
+    border-left: 40px solid transparent;
+    border-right: 40px solid transparent;
+    border-bottom: 45px solid #8b4513;
+    position: relative;
+    filter: drop-shadow(0 3px 6px rgba(0,0,0,0.4));
+}
+
+.farm-house-roof::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: -45px;
+    width: 90px;
+    height: 0;
+    border-left: 45px solid transparent;
+    border-right: 45px solid transparent;
+    border-bottom: 15px solid #654321;
+}
+
+.farm-house-body {
+    width: 70px;
+    height: 55px;
+    background: linear-gradient(135deg, #d4a574 0%, #a67c52 100%);
+    border: 3px solid #654321;
+    border-radius: 0 0 8px 8px;
+    margin: 0 5px;
+    position: relative;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.farm-house-door {
+    width: 20px;
+    height: 28px;
+    background: linear-gradient(to bottom, #654321 0%, #3d2817 100%);
+    border-radius: 5px 5px 0 0;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 1px solid #2d1810;
+}
+
+.farm-house-window {
+    width: 12px;
+    height: 12px;
+    background: linear-gradient(135deg, #ffeb3b 0%, #ffc107 100%);
+    border: 2px solid #654321;
+    border-radius: 2px;
+    position: absolute;
+    top: 15px;
+    animation: windowBlink 4s ease-in-out infinite;
+}
+
+.farm-house-window.left { left: 8px; }
+.farm-house-window.right { right: 8px; animation-delay: 2s; }
+
+@keyframes houseGlow {
+    0%, 100% { transform: translateX(-50%) scale(1); }
+    50% { transform: translateX(-50%) scale(1.05); }
+}
+
+@keyframes windowBlink {
+    0%, 100% { opacity: 1; box-shadow: 0 0 5px #ffeb3b; }
+    50% { opacity: 0.7; box-shadow: 0 0 10px #ffc107; }
+}
+
+/* Farm Fields on sides */
+.farm-field {
+    position: absolute;
+    bottom: 15px;
+    font-size: 1.8rem;
+}
+
+.farm-field.left {
+    left: 15%;
+    animation: fieldSway 3s ease-in-out infinite;
+}
+
+.farm-field.right {
+    right: 15%;
+    animation: fieldSway 3.5s ease-in-out infinite 0.5s;
+}
+
+@keyframes fieldSway {
+    0%, 100% { transform: rotate(0deg) translateY(0); }
+    25% { transform: rotate(-3deg) translateY(-2px); }
+    75% { transform: rotate(3deg) translateY(-2px); }
+}
+
+.legend-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(8px);
+    z-index: 10;
+    padding: 0.8rem 2rem;
+    border-radius: 30px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+    color: var(--soil);
+    font-weight: 600;
+}
+
+.legend-color {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: 2px solid var(--earth-brown);
+}
+
+/* VILLAGE SCENE AT BOTTOM - Aesthetic! */
+.village-bottom-scene {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 180px;
+    z-index: 2;
+    pointer-events: none;
+    background: linear-gradient(to top, rgba(101, 67, 33, 0.3) 0%, transparent 100%);
+}
+
+.village-hut-small {
+    position: absolute;
+    bottom: 40px;
+}
+
+.village-hut-small .hut-roof-small {
+    width: 60px;
+    height: 0;
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+    border-bottom: 35px solid #8b4513;
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+}
+
+.village-hut-small .hut-body-small {
+    width: 50px;
+    height: 45px;
+    background: linear-gradient(135deg, #d4a574 0%, #a67c52 100%);
+    border: 2px solid #654321;
+    border-radius: 0 0 5px 5px;
+    margin: 0 5px;
+    position: relative;
+}
+
+.village-hut-small .hut-door {
+    width: 15px;
+    height: 20px;
+    background: #654321;
+    border-radius: 3px 3px 0 0;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.hut1 { left: 10%; animation: hutBreathe 4s ease-in-out infinite; }
+.hut2 { left: 25%; animation: hutBreathe 5s ease-in-out infinite 0.5s; }
+.hut3 { left: 40%; animation: hutBreathe 4.5s ease-in-out infinite 1s; }
+.hut4 { left: 60%; animation: hutBreathe 5.5s ease-in-out infinite 1.5s; }
+.hut5 { left: 75%; animation: hutBreathe 4.8s ease-in-out infinite 2s; }
+.hut6 { left: 90%; animation: hutBreathe 5.2s ease-in-out infinite 2.5s; }
+
+@keyframes hutBreathe {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-3px) scale(1.02); }
+}
+
+.crop-field-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 35px;
+    font-size: 1.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+}
+
+.crop-field-bottom .crops {
+    display: inline-block;
+    animation: cropSway 3s ease-in-out infinite;
+}
+
+.crop-field-bottom .crops:nth-child(even) { animation-delay: 0.3s; }
+.crop-field-bottom .crops:nth-child(3n) { animation-delay: 0.6s; }
+
+@keyframes cropSway {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-2deg); }
+    75% { transform: rotate(2deg); }
+}
+
+/* Village Houses Gallery */
+.houses-title {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.houses-title h2 {
+    font-size: 2.5rem;
+    color: var(--forest-green);
+    font-family: 'Noto Sans Telugu', sans-serif;
+    margin-bottom: 0.5rem;
+}
+
+.houses-title p {
+    font-size: 1.1rem;
+    color: var(--earth-brown);
+    font-family: 'Noto Sans Telugu', sans-serif;
+}
+
+.generation-filters {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+.gen-filter {
+    padding: 0.8rem 1.8rem;
+    font-size: 1.05rem;
+    font-weight: 600;
+    font-family: 'Noto Sans Telugu', sans-serif;
+    background: linear-gradient(135deg, var(--grass-green), var(--leaf-green));
+    border: 3px solid var(--forest-green);
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: white;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.gen-filter:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.3); }
+.gen-filter.active {
+    background: linear-gradient(135deg, var(--rice-yellow), var(--harvest-gold));
+    color: var(--soil);
+    border-color: var(--earth-brown);
+}
+
+.village-houses {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 2.5rem;
+    padding: 2rem 0;
+}
+
+.family-house {
+    cursor: pointer;
+    transition: all 0.4s ease;
+    position: relative;
+    text-align: center;
+}
+
+.family-house:hover { transform: translateY(-15px) scale(1.05); }
+
+.house-structure {
+    position: relative;
+}
+
+.house-roof {
+    width: 100%;
+    height: 0;
+    border-left: 100px solid transparent;
+    border-right: 100px solid transparent;
+    border-bottom: 80px solid var(--earth-brown);
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.3));
+}
+
+.house-walls {
+    width: 180px;
+    height: 140px;
+    background: linear-gradient(135deg, var(--bamboo), var(--mud-brown));
+    border: 4px solid var(--earth-brown);
+    border-radius: 0 0 15px 15px;
+    position: relative;
+    margin: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+}
+
+.house-member-photo {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 4px solid var(--harvest-gold);
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.house-member-photo img { width: 100%; height: 100%; object-fit: cover; }
+.house-member-photo .avatar-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--crop-green), var(--forest-green));
+    color: white;
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.house-member-name {
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--soil);
+}
+
+.house-member-details {
+    font-size: 0.9rem;
+    color: var(--earth-brown);
+    margin-top: 0.3rem;
+}
+
+/* River Timeline */
+.river-scene { text-align: center; }
+
+.river-title {
+    font-size: 2.8rem;
+    color: var(--forest-green);
+    font-family: 'Noto Sans Telugu', sans-serif;
+    margin-bottom: 0.5rem;
+}
+
+.river-subtitle {
+    font-size: 1.3rem;
+    color: var(--earth-brown);
+    font-family: 'Noto Sans Telugu', sans-serif;
+    margin-bottom: 3rem;
+}
+
+.river-container {
+    position: relative;
+    width: 100%;
+    height: 700px;
+    background: linear-gradient(to bottom, rgba(135, 206, 235, 0.1), rgba(70, 130, 180, 0.2));
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.river-path { position: absolute; top: 0; left: 0; }
+
+.river-boats {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.river-boat {
+    position: absolute;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    animation: bobBoat 3s ease-in-out infinite;
+}
+
+.river-boat:hover { transform: scale(1.15); }
+
+@keyframes bobBoat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.boat-body {
+    width: 120px;
+    background: linear-gradient(135deg, var(--earth-brown), var(--mud-brown));
+    border: 3px solid var(--soil);
+    border-radius: 50px 50px 10px 10px;
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+.boat-sail {
+    width: 0;
+    height: 0;
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+    border-bottom: 50px solid rgba(255, 255, 255, 0.8);
+    margin: -50px auto 0;
+}
+
+.boat-generation {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--rice-yellow);
+    font-family: 'Noto Sans Telugu', sans-serif;
+    margin-bottom: 0.5rem;
+}
+
+.boat-members {
+    font-size: 0.85rem;
+    color: #f0e68c;
+}
+
+/* Ground */
+.village-ground {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: linear-gradient(to bottom, var(--crop-green), var(--forest-green));
+    z-index: 3;
+    pointer-events: none;
+}
+
+.grass {
+    width: 100%;
+    height: 30px;
+    background: repeating-linear-gradient(
+        90deg,
+        var(--grass-green) 0px,
+        var(--grass-green) 2px,
+        var(--leaf-green) 2px,
+        var(--leaf-green) 4px
+    );
+}
+
+/* Bamboo Modal */
+.bamboo-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(101, 67, 33, 0.85);
+    backdrop-filter: blur(8px);
+}
+
+.bamboo-modal.active { display: flex; align-items: center; justify-content: center; }
+
+.bamboo-modal-content {
+    background: linear-gradient(135deg, #f5f5dc, #fff8dc);
+    border-radius: 25px;
+    padding: 3.5rem;
+    max-width: 650px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    border: 8px solid var(--bamboo);
+    position: relative;
+    animation: slideInModal 0.4s ease-out;
+}
+
+@keyframes slideInModal {
+    from { opacity: 0; transform: translateY(-50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.bamboo-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 2rem;
+    font-size: 3rem;
+    color: var(--earth-brown);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.bamboo-close:hover { color: var(--harvest-gold); transform: rotate(90deg) scale(1.2); }
+
+.modal-member-photo {
+    width: 360px;
+    height: 360px;
+    border-radius: 50%;
+    margin: 0 auto 2rem;
+    border: 6px solid var(--harvest-gold);
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.modal-member-photo img { width: 100%; height: 100%; object-fit: cover; }
+.modal-member-photo .avatar-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--crop-green), var(--forest-green));
+    color: white;
+    font-size: 5rem;
+    font-weight: 700;
+}
+
+.modal-member-name {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    color: var(--soil);
+    margin-bottom: 2rem;
+}
+
+.modal-member-info {
+    background: linear-gradient(135deg, rgba(255,255,255,0.7), rgba(245,245,220,0.7));
+    border-radius: 20px;
+    padding: 2rem;
+    border: 4px solid var(--bamboo);
+}
+
+.modal-info-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 0;
+    border-bottom: 2px solid var(--harvest-gold);
+}
+
+.modal-info-item:last-child { border-bottom: none; }
+
+.modal-info-label {
+    font-weight: 700;
+    color: var(--forest-green);
+    font-size: 1.1rem;
+    font-family: 'Noto Sans Telugu', sans-serif;
+}
+
+.modal-info-value {
+    color: var(--soil);
+    font-size: 1.1rem;
+}
+
+/* Footer */
+.village-footer {
+    position: relative;
+    z-index: 10;
+    background: linear-gradient(135deg, var(--earth-brown), var(--soil));
+    padding: 2rem 0;
+    text-align: center;
+    margin-top: 5rem;
+    box-shadow: 0 -8px 30px rgba(0,0,0,0.3);
+}
+
+.footer-crops {
+    font-size: 2rem;
+    margin: 0.5rem 0;
+    animation: swayGrass 2s ease-in-out infinite;
+}
+
+@keyframes swayGrass {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(5deg); }
+}
+
+.village-footer p {
+    color: var(--rice-yellow);
+    font-size: 1.2rem;
+    font-family: 'Noto Sans Telugu', sans-serif;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .village-title { font-size: 2.5rem; }
+    .navigation-huts { gap: 1.5rem; }
+    .hut-roof { width: 100px; border-left: 50px solid transparent; border-right: 50px solid transparent; border-bottom: 40px solid var(--earth-brown); }
+    .hut-body { width: 90px; height: 80px; }
+    .village-houses { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+    .tree-canvas { height: 500px; }
+    .crop-plant { font-size: 1.5rem; }
+}
+
+@media (max-width: 480px) {
+    .village-houses { grid-template-columns: 1fr; }
+    .village-view { padding: 1.5rem; }
+}
+
+.hidden { display: none !important; }
