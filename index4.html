@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>బొమ్మరిల్లు - మన గ్రామం</title>
+    <link rel="stylesheet" href="styles-village-improved.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+Telugu:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Village Sky with Sun/Moon -->
+    <div class="sky">
+        <div class="sun"></div>
+        <div class="clouds">
+            <div class="cloud cloud1"></div>
+            <div class="cloud cloud2"></div>
+            <div class="cloud cloud3"></div>
+        </div>
+        <div class="birds">
+            <div class="bird bird1">🦅</div>
+            <div class="bird bird2">🦅</div>
+            <div class="bird bird3">🕊️</div>
+        </div>
+    </div>
+
+    <!-- Header with Village Sign -->
+    <header class="village-header">
+        <div class="village-sign">
+            <div class="sign-board">
+                <h1 class="village-title">బొమ్మరిల్లు</h1>
+                <p class="village-subtitle">మా కుటుంబ గ్రామం</p>
+                <p class="village-subtitle-en">Our Family Village</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Village Scene -->
+    <div class="village-container">
+
+        <!-- Navigation Huts -->
+        <div class="navigation-huts">
+            <div class="nav-hut active" data-view="tree">
+                <div class="hut-roof"></div>
+                <div class="hut-body">
+                    <div class="hut-icon">🌳</div>
+                    <div class="hut-label">వృక్షం</div>
+                </div>
+            </div>
+            <div class="nav-hut" data-view="gallery">
+                <div class="hut-roof"></div>
+                <div class="hut-body">
+                    <div class="hut-icon">🏠</div>
+                    <div class="hut-label">ఇళ్ళు</div>
+                </div>
+            </div>
+            <div class="nav-hut" data-view="river">
+                <div class="hut-roof"></div>
+                <div class="hut-body">
+                    <div class="hut-icon">🌊</div>
+                    <div class="hut-label">నది</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tree View - Interactive Growing Tree -->
+        <section id="tree-view" class="village-view active">
+            <div class="tree-info">
+                <p>🌱 మన కుటుంబ వృక్షం మీద క్లిక్ చేయండి</p>
+                <div class="tree-legend-inline">
+                    <span class="legend-badge biological">🟢 జన్మించిన పిల్లలు</span>
+                    <span class="legend-badge spouse">💑 జీవిత భాగస్వాములు</span>
+                </div>
+            </div>
+            
+            <!-- SVG Tree Structure -->
+            <div class="tree-canvas">
+                <svg id="familyTreeSVG" width="100%" height="100%" viewBox="0 0 1200 800">
+                    <!-- Tree will be dynamically generated here -->
+                </svg>
+            </div>
+
+            <!-- Animated Farm House Scene -->
+            <div class="crop-strip-container">
+                <!-- Farm House in Center -->
+                <div class="farm-house">
+                    <div class="farm-house-roof"></div>
+                    <div class="farm-house-body">
+                        <div class="farm-house-window left"></div>
+                        <div class="farm-house-window right"></div>
+                        <div class="farm-house-door"></div>
+                    </div>
+                </div>
+                
+                <!-- Farm Fields on sides -->
+                <div class="farm-field left">🌾🌾🌾</div>
+                <div class="farm-field right">🌾🌾🌾</div>
+                
+                <!-- Legend overlay -->
+                <div class="legend-overlay">
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #8b4513;"></div>
+                        <span>వేళ్ళు</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #228b22;"></div>
+                        <span>పెద్దలు</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #32cd32;"></div>
+                        <span>కొమ్మలు</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #90ee90;"></div>
+                        <span>ఆకులు</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery View - Village Houses -->
+        <section id="gallery-view" class="village-view">
+            <div class="village-houses-scene">
+                <div class="houses-title">
+                    <h2>🏡 మన గ్రామ ఇళ్ళు</h2>
+                    <p>ఇంటి మీద క్లిక్ చేసి కుటుంబ సభ్యులను చూడండి</p>
+                </div>
+                
+                <div class="generation-filters">
+                    <button class="gen-filter active" data-gen="all">అందరూ</button>
+                    <button class="gen-filter" data-gen="1">వేళ్ళు</button>
+                    <button class="gen-filter" data-gen="2">పెద్దలు</button>
+                    <button class="gen-filter" data-gen="3">తల్లిదండ్రులు</button>
+                    <button class="gen-filter" data-gen="4">పిల్లలు</button>
+                    <button class="gen-filter" data-gen="5">మనవలు</button>
+                </div>
+
+                <div class="village-houses" id="villageHouses">
+                    <!-- Houses will be generated here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- River View - Timeline as flowing river -->
+        <section id="river-view" class="village-view">
+            <div class="river-scene">
+                <h2 class="river-title">🌊 కాల నది - మన వంశ ప్రవాహం</h2>
+                <p class="river-subtitle">తరాల నది ప్రవాహం</p>
+                
+                <div class="river-container">
+                    <svg class="river-path" width="100%" height="100%" viewBox="0 0 1400 1000">
+                        <!-- River path -->
+                        <defs>
+                            <linearGradient id="riverGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" style="stop-color:#87ceeb;stop-opacity:0.8" />
+                                <stop offset="100%" style="stop-color:#4682b4;stop-opacity:0.9" />
+                            </linearGradient>
+                        </defs>
+                        
+                        <!-- Flowing river path -->
+                        <path id="riverPathLine" 
+                              d="M 100,100 Q 300,80 400,150 T 600,200 T 800,280 T 1000,400 T 1200,600"
+                              stroke="url(#riverGradient)" 
+                              stroke-width="120" 
+                              fill="none" 
+                              opacity="0.6"/>
+                    </svg>
+                    
+                    <div class="river-boats" id="riverBoats">
+                        <!-- Boats with generations will be placed here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Village Bottom Scene - Aesthetic! -->
+        <div class="village-bottom-scene">
+            <div class="village-hut-small hut1">
+                <div class="hut-roof-small"></div>
+                <div class="hut-body-small"><div class="hut-door"></div></div>
+            </div>
+            <div class="village-hut-small hut2">
+                <div class="hut-roof-small"></div>
+                <div class="hut-body-small"><div class="hut-door"></div></div>
+            </div>
+            <div class="village-hut-small hut3">
+                <div class="hut-roof-small"></div>
+                <div class="hut-body-small"><div class="hut-door"></div></div>
+            </div>
+            <div class="village-hut-small hut4">
+                <div class="hut-roof-small"></div>
+                <div class="hut-body-small"><div class="hut-door"></div></div>
+            </div>
+            <div class="village-hut-small hut5">
+                <div class="hut-roof-small"></div>
+                <div class="hut-body-small"><div class="hut-door"></div></div>
+            </div>
+            <div class="village-hut-small hut6">
+                <div class="hut-roof-small"></div>
+                <div class="hut-body-small"><div class="hut-door"></div></div>
+            </div>
+        </div>
+
+        <!-- Ground with grass -->
+        <div class="village-ground">
+            <div class="grass"></div>
+        </div>
+    </div>
+
+    <!-- Member Detail Modal (Bamboo Hut Style) -->
+    <div id="memberModal" class="bamboo-modal">
+        <div class="bamboo-modal-content">
+            <span class="bamboo-close">&times;</span>
+            <div id="bambooModalBody">
+                <!-- Content here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="village-footer">
+        <div class="footer-crops">🌾 🌾 🌾</div>
+        <p>మన గ్రామం, మన కుటుంబం - ప్రేమతో</p>
+        <div class="footer-crops">🌾 🌾 🌾</div>
+    </footer>
+
+    <script src="script-village-improved.js"></script>
+</body>
+</html>
